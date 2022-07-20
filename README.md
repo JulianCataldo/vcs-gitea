@@ -9,4 +9,4 @@ https://docs.gitea.io/en-us/command-line/
 
 # Drone CI companion
 
-[Continuous Integration - Drone](../ci-drone) repository.
+[Continuous Integration - Drone](https://github.com/JulianCataldo/ci-drone) repository.
