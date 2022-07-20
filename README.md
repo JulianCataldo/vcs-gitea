@@ -6,3 +6,7 @@
 
 https://discourse.gitea.io/t/set-ldap-via-configuration-file/2616
 https://docs.gitea.io/en-us/command-line/
+
+# Drone CI companion
+
+[Continuous Integration - Drone](../ci-drone) repository.
