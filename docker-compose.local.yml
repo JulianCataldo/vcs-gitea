@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  gitea:
+    image: gitea/gitea:1.17.0-rc2
+    restart: always
+    environment:
+      # ————————————————————————————————————————————————————————————————————————
+      ROOT_URL: http://${LAN_HOST:?}:${PORT_WEB:-1988}
+      SSH_PORT: "${PORT_SSH:-1984}"
+      # DISABLE_HTTP_GIT: 'true'
+      # ————————————————————————————————————————————————————————————————————————
+      APP_NAME: "My Repositories"
+      DISABLE_REGISTRATION: "true"
+      USER_UID: 1000
+      USER_GID: 1000
+      DEFAULT_BRANCH: master
+
+    volumes:
+      - ${DATA_DIR:-./volumes/gitea}:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "${LAN_HOST:?}:${PORT_WEB:-1988}:3000"
+      - "${LAN_HOST:?}:${PORT_SSH:-1984}:1984"
+
+    networks:
+      - gitea
+
+networks:
+  gitea:
+    driver: bridge
+#
+# TODO: test in injection in environment instead of manual editing
+# In app.ini
+#
+# [webhook]
+# ALLOWED_HOST_LIST = drone.123.com, 192.168.x.x/24
+# [repository]
+# DEFAULT_BRANCH = master
